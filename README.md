@@ -9,6 +9,7 @@ Able to view signals and PTT.
 
 Audio is also posible with webrtc.
 
-rigctld server required to be configure and running.
+rigctld server required to be configure and running. See config.php
+apache web server also requared 
 
 GPL Licence

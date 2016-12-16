@@ -1,5 +1,5 @@
 # Webrig
-Web hamlib client
+Web hamlib client - Use your radio from any browser
 
 ![alt tag](https://raw.githubusercontent.com/ntoulasd/Webrig/master/IMAGE.png)
 

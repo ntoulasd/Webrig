@@ -12,4 +12,7 @@ Audio is also posible with webrtc.
 rigctld server required to be configure and running. See config.php
 apache web server also requared 
 
+Conection
+Rig - Cat - PC (rigctld - apache) - Router - Internet
+
 GPL Licence

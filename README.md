@@ -6,13 +6,14 @@ Web hamlib client - Use your radio from any browser
 A web interface for your ham radio.
 You can remote change frequency, modulation.
 Able to view signals and PTT.
-
 Audio is also posible with webrtc.
+
 
 rigctld server required to be configure and running. See config.php
 apache web server also requared 
 
-Conection
+
+Connection
 
 Rig - Cat cable - PC (rigctld - apache) - Router - Internet
 

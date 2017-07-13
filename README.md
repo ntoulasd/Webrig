@@ -13,6 +13,11 @@ rigctld server required to be configure and running. See config.php
 apache web server also requared 
 
 
+Chirp memory file
+
+You can export and use your channels to memory.csv
+
+
 Connection
 
 Rig - Cat cable - PC (rigctld - apache) - Router - Internet

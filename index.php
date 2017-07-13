@@ -75,7 +75,7 @@ function ptt(){
 $('#ptt').load('ptt.php');
 }; 
 function set(){
-freq=document.getElementById("freq").value;
+freq=document.getElementById("frequency").value;
 mod=document.getElementById("mod").value;
 mem=document.getElementById("mem").value;
 $('#set').load('set.php?freq='+freq+'&mod='+mod+'&mem='+mem);
@@ -117,7 +117,7 @@ $('#set').load('set.php?move='+fr);
 <br>
 
 <button id="set" onclick="set()">SET</button> 
-<br>
+<br><br>
 <button id="setfreq" onclick="setfreq(-12.5)">-12.5</button>
 <button id="setfreq" onclick="setfreq(-1)">-1</button>
 <button id="setfreq" onclick="setfreq(1)">+1</button>

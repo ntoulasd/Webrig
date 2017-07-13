@@ -16,63 +16,26 @@ $move = test_input($_GET["move"]);
 
 if ($mem) {
 
-switch ($mem) {
+$row = 1;
+if (($handle = fopen("memory.csv", "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
 
-	case M1: //RU90
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 439150000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	$run = exec('rigctl  -m 2 -r '.HOST.' O 7600000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' R -');
-	$run = exec('rigctl  -m 2 -r '.HOST.' C 825');
-	break;
-	case M2: //RU72
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 438700000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	$run = exec('rigctl  -m 2 -r '.HOST.' O 7600000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' R -');
-	$run = exec('rigctl  -m 2 -r '.HOST.' C 770');
-	break;
-	case M3: //Radio
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 91600000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M WFM 0');
-	break;
-	case M4: //7185000
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 7185000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M LSB 0');
-	break;
-	case M5: //Katerini
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 144700000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	break;
-	case M6: //SOTA
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 145375000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	break;
-	case M7: //ISS
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 145825000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	break;
-	case M8: //R0
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 145600000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	$run = exec('rigctl  -m 2 -r '.HOST.' O 600000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' R -');
-	$run = exec('rigctl  -m 2 -r '.HOST.' C 825');
-	break;
-	case M9: //R5
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 145725000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	$run = exec('rigctl  -m 2 -r '.HOST.' O 600000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' R -');
-	$run = exec('rigctl  -m 2 -r '.HOST.' C 885');
-	break;
-	case M10: //RU-92
-	$run = exec('rigctl  -m 2 -r '.HOST.' F 439200000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' M FM 0');
-	$run = exec('rigctl  -m 2 -r '.HOST.' O 7600000');
-	$run = exec('rigctl  -m 2 -r '.HOST.' R -');
-	$run = exec('rigctl  -m 2 -r '.HOST.' C 797');
-	break;
+	if ($mem==$data[0]) {
+	//Freq
+	$run = exec('rigctl  -m 2 -r '.HOST.' F '.$data[2]*1000000);
+	//Modulation
+	If ($data[10]=="NFM") {$data[10]="FM";}
+	$run = exec('rigctl  -m 2 -r '.HOST.' M '.$data[10].' 0');
+	//Shift
+	$run = exec('rigctl  -m 2 -r '.HOST.' O '.$data[4]*1000000);
+	//-+Shift
+	if ($data[3]) {$run = exec('rigctl  -m 2 -r '.HOST.' R '.$data[3]);}
+	//Tone
+	if ($data[5]=="Tone") {$run = exec('rigctl  -m 2 -r '.HOST.' C '.$data[6]);}
+	}
+	$row++;
+    }
+    fclose($handle);
 }
 
 } else {

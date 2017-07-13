@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Webrig</title>
+<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="jquery.min.js"></script>
         <script src="//cdn.webrtc-experiment.com/firebase.js"> </script>
         <script src="//cdn.webrtc-experiment.com/getMediaElement.min.js"> </script>
@@ -16,12 +17,13 @@ setInterval(function(){
 </script>
 <style>
 body {
-background: rgb(136,191,232); 
+background: rgb(0,0,0);
+color: #fff; 
 }
 #ptt {
 color:red;
 width:300px;
-height:150px;
+height:120px;
 font-size:24px;
 background: rgb(181,189,200); /* Old browsers */
 background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1) 36%, rgba(40,52,59,1) 100%); /* FF3.6-15 */
@@ -40,7 +42,7 @@ background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149
 background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 border-radius: 12px;
 }
-#minus, #plus, #setfreq {
+#setfreq {
 color:red;
 width:70px;
 height:50px;
@@ -50,6 +52,19 @@ background: -moz-linear-gradient(top, rgba(181,189,200,1) 0%, rgba(130,140,149,1
 background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 border-radius: 12px;
+}
+
+#signals {
+color:blue;
+//background-image: url(http://qrznow.com/wp-content/uploads/2015/10/ft-950.jpg);
+background-size: 300px 100px;
+background-repeat: no-repeat;
+background-position-x: center;
+height: 75px;
+padding: 18px 0 0 0;
+font-family: 'Orbitron', sans-serif;
+font-size: 30px;
+font-style: italic;
 }
 </style>
 </head>
@@ -99,29 +114,27 @@ $('#set').load('set.php?move='+fr);
   <option <?php if ($mod=="AM") { echo 'selected="selected"'; } ?> value="AM">AM</option>
 </select> 
 
-
 <select id="mem" name="mem">
-  <option value="">Memory</option>
-  <option value="M1">RU-90</option>
-  <option value="M2">RU-72</option>
-  <option value="M3">Radio 91.6</option>
-  <option value="M4">7.185 LSB</option>
-  <option value="M5">Katerini</option>
-  <option value="M6">SOTA</option>
-  <option value="M7">ISS</option>
-  <option value="M8">R0 Lamia</option>
-  <option value="M9">R5 Pilio</option>
-  <option value="M10">RU92</option>
-</select> 
+<?php
+$row = 1;
+if (($handle = fopen("memory.csv", "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+	echo '<option value="'.$data[0].'">'.$data[1].'</option>\n';
+	$row++;
+    }
+    fclose($handle);
+}
+?>
+</select>
 <br>
 <br>
 
 <button id="set" onclick="set()">SET</button> 
 <br><br>
-<button id="setfreq" onclick="setfreq(-12.5)">-12.5</button>
+<button id="setfreq" onclick="setfreq(-10)">-10</button>
 <button id="setfreq" onclick="setfreq(-1)">-1</button>
 <button id="setfreq" onclick="setfreq(1)">+1</button>
-<button id="setfreq" onclick="setfreq(+12.5)">+12.5</button>
+<button id="setfreq" onclick="setfreq(+10)">+10</button>
 <br><br>
 
 <!-- just copy this <section> and next script -->

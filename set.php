@@ -84,17 +84,13 @@ if ($mod) {
 $run = exec('rigctl  -m 2 -r '.HOST.' M '.$mod." 0");
 }
 
-if ($move=="minus") {
+if (!empty($move)) {
 $freq = (exec('rigctl  -m 2 -r '.HOST.' f'));
-$freq=$freq-12500;
+$freq=$freq+($move*1000);
 $run = exec('rigctl  -m 2 -r '.HOST.' F '.$freq);
 }
 
-if ($move=="plus") {
-$freq = (exec('rigctl  -m 2 -r '.HOST.' f'));
-$freq=$freq+12500;
-$run = exec('rigctl  -m 2 -r '.HOST.' F '.$freq);
-}
+
 }
 
 echo "SET";

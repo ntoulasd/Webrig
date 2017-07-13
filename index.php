@@ -40,7 +40,7 @@ background: -webkit-linear-gradient(top, rgba(181,189,200,1) 0%,rgba(130,140,149
 background: linear-gradient(to bottom, rgba(181,189,200,1) 0%,rgba(130,140,149,1) 36%,rgba(40,52,59,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 border-radius: 12px;
 }
-#minus, #plus {
+#minus, #plus, #setfreq {
 color:red;
 width:70px;
 height:50px;
@@ -82,15 +82,14 @@ $('#set').load('set.php?freq='+freq+'&mod='+mod+'&mem='+mem);
 document.getElementById("mem").value = "";
 document.getElementById("freq").value = "";
 }; 
-function minus(){
-$('#set').load('set.php?move=minus');
-}; 
-function plus(){
-$('#set').load('set.php?move=plus');
-}; 
+
+function setfreq(fr){
+$('#set').load('set.php?move='+fr);
+};
+
 </script>
 
-<input id="freq" type="text" name="freq" value="<?php echo $freq;?>">
+<input id="frequency" type="text" name="freq" value="<?php echo $freq;?>">
 <br>
 
  <select id="mod" name="mod">
@@ -117,7 +116,12 @@ $('#set').load('set.php?move=plus');
 <br>
 <br>
 
-<button id="minus" onclick="minus()">-12.5</button> <button id="set" onclick="set()">SET</button> <button id="plus" onclick="plus()">+12.5</button>
+<button id="set" onclick="set()">SET</button> 
+<br>
+<button id="setfreq" onclick="setfreq(-12.5)">-12.5</button>
+<button id="setfreq" onclick="setfreq(-1)">-1</button>
+<button id="setfreq" onclick="setfreq(1)">+1</button>
+<button id="setfreq" onclick="setfreq(+12.5)">+12.5</button>
 <br><br>
 
 <!-- just copy this <section> and next script -->

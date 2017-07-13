@@ -131,11 +131,16 @@ if (($handle = fopen("memory.csv", "r")) !== FALSE) {
 
 <button id="set" onclick="set()">SET</button> 
 <br><br>
-<button id="setfreq" onclick="setfreq(-10)">-10</button>
 <button id="setfreq" onclick="setfreq(-1)">-1</button>
-<button id="setfreq" onclick="setfreq(1)">+1</button>
+<button id="setfreq" onclick="setfreq(-0.5)">-0.5</button>
+<button id="setfreq" onclick="setfreq(0.5)">+0.5</button>
+<button id="setfreq" onclick="setfreq(+1)">+1</button>
+<br>
+<button id="setfreq" onclick="setfreq(-12.5)">-12.5</button>
+<button id="setfreq" onclick="setfreq(-10)">-10</button>
 <button id="setfreq" onclick="setfreq(+10)">+10</button>
-<br><br>
+<button id="setfreq" onclick="setfreq(+12.5)">+12.5</button>
+<br>
 
 <!-- just copy this <section> and next script -->
             <section class="experiment">
